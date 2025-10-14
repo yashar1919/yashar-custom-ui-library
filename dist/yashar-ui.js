@@ -3053,6 +3053,7 @@ const Rr = ({
     ),
     secondary: Y(
       "bg-transparent text-sky-600 border-2 border-sky-600 rounded-md",
+      "hover:bg-sky-700 hover:text-white active:bg-sky-900 active:text-white",
       "disabled:text-sky-300 disabled:border-sky-300 disabled:cursor-not-allowed"
     ),
     danger: Y(
@@ -3062,6 +3063,7 @@ const Rr = ({
     ),
     "danger-outline": Y(
       "bg-transparent text-red-600 border-2 border-red-600 rounded-md",
+      "hover:bg-red-700 hover:text-white active:bg-red-900 active:text-white",
       "disabled:text-red-300 disabled:border-red-300 disabled:cursor-not-allowed"
     ),
     success: Y(

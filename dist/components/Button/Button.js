@@ -14,9 +14,9 @@ const Button = ({ children, variant = "primary", size = "medium", disabled = fal
     // Variant classes - these can be overridden by className
     const variantClasses = {
         primary: cn("bg-sky-600 text-white border border-transparent rounded-md", "hover:bg-sky-700 active:bg-sky-800", "disabled:bg-sky-300 disabled:cursor-not-allowed"),
-        secondary: cn("bg-transparent text-sky-600 border-2 border-sky-600 rounded-md", "disabled:text-sky-300 disabled:border-sky-300 disabled:cursor-not-allowed"),
+        secondary: cn("bg-transparent text-sky-600 border-2 border-sky-600 rounded-md", "hover:bg-sky-700 hover:text-white active:bg-sky-900 active:text-white", "disabled:text-sky-300 disabled:border-sky-300 disabled:cursor-not-allowed"),
         danger: cn("bg-red-600 text-white border border-transparent rounded-md", "hover:bg-red-700 active:bg-red-800", "disabled:bg-red-300 disabled:cursor-not-allowed"),
-        "danger-outline": cn("bg-transparent text-red-600 border-2 border-red-600 rounded-md", "disabled:text-red-300 disabled:border-red-300 disabled:cursor-not-allowed"),
+        "danger-outline": cn("bg-transparent text-red-600 border-2 border-red-600 rounded-md", "hover:bg-red-700 hover:text-white active:bg-red-900 active:text-white", "disabled:text-red-300 disabled:border-red-300 disabled:cursor-not-allowed"),
         success: cn("bg-green-600 text-white border border-transparent rounded-md", "hover:bg-green-700 active:bg-green-800", "disabled:bg-green-300 disabled:cursor-not-allowed"),
     };
     // Size classes - these can also be overridden
