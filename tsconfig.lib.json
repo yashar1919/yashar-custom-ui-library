@@ -21,6 +21,7 @@
     "src/index.ts",
     "src/components/**/*",
     "src/types/**/*",
+    "src/utils/**/*",
     "src/style.d.ts"
   ],
   "exclude": [

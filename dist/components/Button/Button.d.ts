@@ -6,6 +6,7 @@ export interface ButtonProps extends BaseComponentProps {
     disabled?: boolean;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
     type?: "button" | "submit" | "reset";
+    unstyled?: boolean;
 }
 declare const Button: React.FC<ButtonProps>;
 export default Button;

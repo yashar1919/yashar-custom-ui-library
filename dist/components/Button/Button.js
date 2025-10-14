@@ -1,70 +1,35 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-const Button = ({ children, variant = "primary", size = "medium", disabled = false, onClick, type = "button", className = "", ...props }) => {
-    // Base classes with Tailwind
-    const baseClasses = [
-        "inline-flex",
-        "items-center",
-        "justify-center",
-        "border",
-        "border-transparent",
-        "font-medium",
-        "rounded-md",
-        "focus:outline-none",
-        "focus:ring-2",
-        "focus:ring-offset-2",
-        "transition-colors",
-        "duration-200",
-        "cursor-pointer",
-        "select-none"
-    ];
-    // Variant classes
+import { cn } from "../../utils";
+const Button = ({ children, variant = "primary", size = "medium", disabled = false, onClick, type = "button", className, unstyled = false, ...props }) => {
+    // If unstyled, only apply className and basic functionality
+    if (unstyled) {
+        return (_jsx("button", { type: type, className: cn(className), disabled: disabled, onClick: onClick, ...props, children: children }));
+    }
+    // Base classes with Tailwind - no default focus ring
+    const baseClasses = cn(
+    // Essential layout and interaction classes
+    "inline-flex items-center justify-center", "font-medium transition-colors duration-200", "focus:outline-none select-none"
+    // No default focus ring - user can add their own via className
+    );
+    // Variant classes - these can be overridden by className
     const variantClasses = {
-        primary: [
-            "bg-blue-600",
-            "text-white",
-            "hover:bg-blue-700",
-            "focus:ring-blue-500",
-            "disabled:bg-blue-300"
-        ],
-        secondary: [
-            "bg-gray-600",
-            "text-white",
-            "hover:bg-gray-700",
-            "focus:ring-gray-500",
-            "disabled:bg-gray-300"
-        ],
-        danger: [
-            "bg-red-600",
-            "text-white",
-            "hover:bg-red-700",
-            "focus:ring-red-500",
-            "disabled:bg-red-300"
-        ],
-        success: [
-            "bg-green-600",
-            "text-white",
-            "hover:bg-green-700",
-            "focus:ring-green-500",
-            "disabled:bg-green-300"
-        ]
+        primary: cn("bg-sky-600 text-white border border-transparent rounded-md", "hover:bg-sky-700 active:bg-sky-800", "disabled:bg-sky-300 disabled:cursor-not-allowed"),
+        secondary: cn("bg-transparent text-sky-600 border-2 border-sky-600 rounded-md", "disabled:text-sky-300 disabled:border-sky-300 disabled:cursor-not-allowed"),
+        danger: cn("bg-red-600 text-white border border-transparent rounded-md", "hover:bg-red-700 active:bg-red-800", "disabled:bg-red-300 disabled:cursor-not-allowed"),
+        "danger-outline": cn("bg-transparent text-red-600 border-2 border-red-600 rounded-md", "disabled:text-red-300 disabled:border-red-300 disabled:cursor-not-allowed"),
+        success: cn("bg-green-600 text-white border border-transparent rounded-md", "hover:bg-green-700 active:bg-green-800", "disabled:bg-green-300 disabled:cursor-not-allowed"),
     };
-    // Size classes
+    // Size classes - these can also be overridden
     const sizeClasses = {
-        small: ["px-3", "py-1.5", "text-sm"],
-        medium: ["px-4", "py-2", "text-base"],
-        large: ["px-6", "py-3", "text-lg"]
+        small: "px-3 py-1.5 text-sm",
+        medium: "px-4 py-2 text-base",
+        large: "px-6 py-3 text-lg",
     };
-    // Disabled classes
-    const disabledClasses = disabled ? ["cursor-not-allowed", "opacity-60"] : [];
-    const buttonClasses = [
-        ...baseClasses,
-        ...variantClasses[variant],
-        ...sizeClasses[size],
-        ...disabledClasses,
-        className
-    ]
-        .filter(Boolean)
-        .join(" ");
-    return (_jsx("button", { type: type, className: buttonClasses, disabled: disabled, onClick: onClick, ...props, children: children }));
+    // Additional disabled classes
+    const disabledClasses = disabled ? "opacity-60" : "cursor-pointer";
+    // Merge all classes intelligently - className will override any conflicting default classes
+    const finalClasses = cn(baseClasses, variantClasses[variant], sizeClasses[size], disabledClasses, className // User's className will override any conflicting default classes
+    );
+    return (_jsx("button", { type: type, className: finalClasses, disabled: disabled, onClick: onClick, ...props, children: children }));
 };
 export default Button;
