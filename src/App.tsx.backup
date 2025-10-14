@@ -1,0 +1,328 @@
+import { useState } from "react";
+import { Button, Input, Textarea } from "./components";
+
+function App() {
+  // State for controlled inputs to test clear functionality
+  const [textValue, setTextValue] = useState("Sample text to clear");
+  const [emailValue, setEmailValue] = useState("test@example.com");
+  const [urlValue, setUrlValue] = useState("https://example.com");
+  const [textareaValue, setTextareaValue] = useState(
+    "This is sample textarea content that can be cleared."
+  );
+  return (
+    <div className="p-8 max-w-4xl mx-auto min-h-screen">
+      <h1 className="text-4xl font-bold text-gray-200 mb-4">
+        Yashar UI Library - Preview
+      </h1>
+      <p className="text-gray-400 mb-8">
+        This preview is for testing library components
+      </p>
+
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold text-gray-200 mb-4">
+          Button Component Examples
+        </h2>
+        <div className="flex flex-wrap gap-4 mb-4">
+          <Button variant="fill">Fill Button</Button>
+          <Button variant="outline">Outline Button</Button>
+        </div>
+
+        <div className="flex flex-wrap gap-4 mb-4">
+          <h3 className="w-full text-lg font-semibold text-gray-200 mb-2">
+            Custom Styling Examples
+          </h3>
+          <div className="w-full flex justify-between items-center gap-4">
+            <Button className="bg-amber-600 hover:bg-amber-700 active:bg-amber-800 text-white w-full">
+              Custom Amber
+            </Button>
+            <Button variant="fill" className="rounded-full px-8 w-full">
+              Rounded Fill
+            </Button>
+          </div>
+          <Button className="bg-gradient-to-r from-lime-500 to-teal-500 hover:from-lime-600 hover:to-teal-600 active:from-lime-700 active:to-teal-700 text-white border-0 w-full">
+            Gradient Button
+          </Button>
+          <Button
+            variant="outline"
+            className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black active:bg-cyan-500 active:text-white"
+          >
+            Custom Cyan Outline
+          </Button>
+
+          <Button className="bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white">
+            Purple Fill
+          </Button>
+          <Button className="bg-transparent border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-700">
+            Purple Outline
+          </Button>
+          <Button className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white">
+            Red Fill
+          </Button>
+          <Button className="bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white active:bg-red-700">
+            Red Outline
+          </Button>
+          <Button disabled>Disabled Fill</Button>
+          <Button variant="outline" disabled>
+            Disabled Outline
+          </Button>
+          <Button
+            unstyled
+            className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors font-bold uppercase tracking-wide"
+          >
+            Fully Custom
+          </Button>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      {/* Input Component Examples */}
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold text-gray-200 mb-4">
+          Input Component Examples
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <Input
+            variant="outline"
+            type="text"
+            label="Full Name"
+            placeholder="Enter your full name"
+            helperText="This field is required"
+            required
+          />
+
+          <Input
+            variant="fill"
+            type="email"
+            label="Email Address"
+            placeholder="john@example.com"
+          />
+
+          <Input
+            variant="outline"
+            type="password"
+            label="Password"
+            placeholder="Enter password"
+            helperText="Must be at least 8 characters"
+          />
+
+          <Input variant="fill" type="number" label="Age" placeholder="25" />
+
+          <Input
+            variant="outline"
+            type="search"
+            placeholder="Search anything..."
+            label="Search"
+          />
+
+          <Input
+            variant="fill"
+            type="tel"
+            label="Phone Number"
+            placeholder="+1 (555) 123-4567"
+          />
+
+          <Input
+            variant="outline"
+            type="url"
+            label="Website"
+            placeholder="https://example.com"
+          />
+
+          <Input
+            variant="fill"
+            type="text"
+            label="Disabled Input"
+            placeholder="Can't edit this"
+            disabled
+          />
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-200 mb-3">
+            Input with Error State
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Input
+              variant="outline"
+              type="email"
+              label="Email"
+              placeholder="invalid-email"
+              error="Please enter a valid email address"
+            />
+
+            <Input
+              variant="fill"
+              type="password"
+              label="Password"
+              placeholder="123"
+              error="Password must be at least 8 characters"
+            />
+          </div>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-200 mb-3">
+            Clearable Inputs (Try typing and click X)
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Input
+              variant="outline"
+              type="text"
+              label="Text Input"
+              placeholder="Type something..."
+              value={textValue}
+              onChange={(e) => setTextValue(e.target.value)}
+              helperText="Clear button appears when you type"
+            />
+
+            <Input
+              variant="fill"
+              type="email"
+              label="Email Input"
+              placeholder="Enter email..."
+              value={emailValue}
+              onChange={(e) => setEmailValue(e.target.value)}
+            />
+
+            <Input
+              variant="outline"
+              type="url"
+              label="URL Input"
+              placeholder="Enter website..."
+              value={urlValue}
+              onChange={(e) => setUrlValue(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-200 mb-3">
+            Custom Styled Inputs
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Input
+              variant="outline"
+              type="text"
+              label="Custom Border"
+              placeholder="Custom styling"
+              className="border-purple-500 focus:border-purple-600 focus:ring-purple-600/20"
+            />
+
+            <Input
+              unstyled
+              type="text"
+              placeholder="Completely custom input"
+              className="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white placeholder-blue-100 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-white/50"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Textarea Component Examples */}
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold text-gray-200 mb-4">
+          Textarea Component Examples
+        </h2>
+
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-200 mb-3">
+            Clearable Textarea (Try typing and click X)
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Textarea
+              variant="outline"
+              label="Clearable Message"
+              placeholder="Type your message..."
+              value={textareaValue}
+              onChange={(e) => setTextareaValue(e.target.value)}
+              helperText="Clear button appears when you type"
+              rows={4}
+            />
+
+            <Textarea
+              variant="fill"
+              label="Another Clearable"
+              placeholder="Type something else..."
+              value={textareaValue}
+              onChange={(e) => setTextareaValue(e.target.value)}
+              rows={4}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <Textarea
+            variant="outline"
+            label="Message"
+            placeholder="Enter your message here..."
+            helperText="Maximum 500 characters"
+            rows={4}
+            maxLength={500}
+          />
+
+          <Textarea
+            variant="fill"
+            label="Description"
+            placeholder="Describe your project..."
+            rows={4}
+          />
+
+          <Textarea
+            variant="outline"
+            label="Comments"
+            placeholder="Add your comments..."
+            rows={6}
+            resize="vertical"
+          />
+
+          <Textarea
+            variant="fill"
+            label="Disabled Textarea"
+            placeholder="Can't edit this"
+            disabled
+            rows={4}
+          />
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-200 mb-3">
+            Textarea with Error
+          </h3>
+          <Textarea
+            variant="outline"
+            label="Feedback"
+            placeholder="This field has an error..."
+            error="Feedback is required and must be at least 10 characters"
+            rows={3}
+          />
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-200 mb-3">
+            Custom Styled Textarea
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Textarea
+              variant="outline"
+              label="Custom Colors"
+              placeholder="Purple themed textarea"
+              className="border-purple-500 focus:border-purple-600 focus:ring-purple-600/20"
+              rows={4}
+            />
+
+            <Textarea
+              unstyled
+              placeholder="Completely custom textarea with gradient background"
+              className="w-full px-4 py-3 bg-gradient-to-br from-green-400 to-blue-500 text-white placeholder-green-100 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-white/50 resize-none"
+              rows={4}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;

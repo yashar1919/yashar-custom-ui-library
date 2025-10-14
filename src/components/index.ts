@@ -1,5 +1,9 @@
 // Export all components from here
 export { default as Button } from "./Button/Button";
-// Add more components here as you create them
-// export { default as Card } from './Card/Card'
-// export { default as Modal } from './Modal/Modal'
+export { Input } from "./Input";
+export { Textarea } from "./Textarea";
+
+// Export types
+export type { ButtonProps } from "./Button/Button";
+export type { InputProps, InputVariant, InputType } from "./Input";
+export type { TextareaProps, TextareaVariant } from "./Textarea";
