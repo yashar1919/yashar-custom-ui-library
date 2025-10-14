@@ -1,8 +1,7 @@
 import React from "react";
-import type { BaseComponentProps, ButtonVariant, ButtonSize } from "../../types";
+import type { BaseComponentProps, ButtonVariant } from "../../types";
 export interface ButtonProps extends BaseComponentProps {
     variant?: ButtonVariant;
-    size?: ButtonSize;
     disabled?: boolean;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
     type?: "button" | "submit" | "reset";
