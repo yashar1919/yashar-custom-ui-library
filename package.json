@@ -20,7 +20,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:lib": "npx tsc -p tsconfig.lib.json && npx vite build --mode library",
+    "build:lib": "npm run clean && npx tsc -p tsconfig.lib.json && npx vite build --mode library",
+    "clean": "rimraf dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -38,6 +39,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
+    "rimraf": "^6.0.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",
     "vite": "^7.1.7"
