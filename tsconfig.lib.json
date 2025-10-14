@@ -17,7 +17,7 @@
     /* Linting */
     "strict": true
   },
-  "include": ["src/index.ts", "src/components/**/*", "src/types/**/*"],
+  "include": ["src/index.ts", "src/components/**/*", "src/types/**/*", "src/style.d.ts"],
   "exclude": [
     "src/App.tsx",
     "src/main.tsx",

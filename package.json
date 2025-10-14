@@ -12,7 +12,10 @@
       "import": "./dist/yashar-ui.js",
       "require": "./dist/yashar-ui.umd.cjs"
     },
-    "./style.css": "./dist/yashar-ui.css"
+    "./style.css": {
+      "types": "./dist/style.d.ts",
+      "default": "./dist/yashar-ui.css"
+    }
   },
   "files": [
     "dist"
@@ -20,7 +23,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:lib": "npm run clean && npx tsc -p tsconfig.lib.json && npx vite build --mode library",
+    "build:lib": "npm run clean && npx tsc -p tsconfig.lib.json && npx vite build --mode library && npm run copy-types",
+    "copy-types": "copy src\\style.d.ts dist\\style.d.ts",
     "clean": "rimraf dist",
     "lint": "eslint .",
     "preview": "vite preview"
