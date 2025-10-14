@@ -12,7 +12,7 @@
       "import": "./dist/yashar-ui.js",
       "require": "./dist/yashar-ui.umd.cjs"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/yashar-ui.css"
   },
   "files": [
     "dist"
