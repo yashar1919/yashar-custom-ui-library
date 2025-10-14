@@ -1,7 +1,7 @@
 {
   "name": "yashar-ui",
   "private": false,
-  "version": "1.0.3",
+  "version": "1.1.0",
   "type": "module",
   "main": "./dist/yashar-ui.umd.cjs",
   "module": "./dist/yashar-ui.js",
