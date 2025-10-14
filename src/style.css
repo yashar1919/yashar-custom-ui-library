@@ -1,18 +1,21 @@
-/* Yashar UI Library - Main Styles */
-
-/* Import all component styles */
-@import './components/Button/Button.css';
+/* Yashar UI Library - Main Styles with Tailwind */
+@import "tailwindcss";
 
 /* Base styles */
 * {
     box-sizing: border-box;
 }
 
-/* You can add global library styles here */
+/* Custom utility classes for the library */
 .yashar-ui {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom component layer */
+@layer components {
+  /* Any custom component styles can go here */
 }

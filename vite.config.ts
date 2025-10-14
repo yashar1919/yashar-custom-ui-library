@@ -1,12 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   if (mode === "library") {
     return {
-      plugins: [react()],
+      plugins: [react(), tailwindcss()],
       build: {
         emptyOutDir: false, // Don't clear the outDir so TypeScript declarations are preserved
         lib: {
@@ -31,6 +32,6 @@ export default defineConfig(({ mode }) => {
 
   // Default development config
   return {
-    plugins: [react()],
+    plugins: [react(), tailwindcss()],
   };
 });

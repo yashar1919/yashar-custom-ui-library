@@ -1,6 +1,5 @@
 import React from "react";
 import type { BaseComponentProps, ButtonVariant, ButtonSize } from "../../types";
-import "./Button.css";
 export interface ButtonProps extends BaseComponentProps {
     variant?: ButtonVariant;
     size?: ButtonSize;
