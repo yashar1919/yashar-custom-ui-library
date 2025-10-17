@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { Button } from "../components";
 
 const ButtonDemo = () => {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="mb-8">
       <h2 className="text-2xl font-semibold text-gray-200 mb-4">
@@ -12,9 +9,7 @@ const ButtonDemo = () => {
 
       {/* Basic Variants */}
       <div className="flex flex-wrap gap-4 mb-4">
-        <Button variant="fill" onClick={() => setCount(count + 1)}>
-          Fill Button (Count: {count})
-        </Button>
+        <Button variant="fill">Fill Button</Button>
         <Button variant="outline">Outline Button</Button>
       </div>
 

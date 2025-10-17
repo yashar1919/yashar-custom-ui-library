@@ -17,5 +17,14 @@
 
 /* Custom component layer */
 @layer components {
-    /* Any custom component styles can go here */
+
+    /* Input filled state styles */
+    .input-filled {
+        @apply border-green-500;
+    }
+
+    /* Allow custom filled states to be overridden */
+    .input-filled.custom-filled {
+        @apply border-green-500;
+    }
 }

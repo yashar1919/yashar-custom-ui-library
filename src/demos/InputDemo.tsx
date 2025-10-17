@@ -7,9 +7,53 @@ const InputDemo = () => {
   const [emailValue, setEmailValue] = useState("john@example.com");
   const [websiteValue, setWebsiteValue] = useState("https://johndoe.com");
 
+  // State for filled state demo
+  const [filledStateValue, setFilledStateValue] = useState("");
+  const [floatingTestValue, setFloatingTestValue] = useState(
+    "Test content with value"
+  );
+
   // State for validation test inputs (default values that will show errors)
   const [errorEmailValue, setErrorEmailValue] = useState("invalid-email");
   const [errorPasswordValue, setErrorPasswordValue] = useState("123");
+
+  // State for floating form validation
+  const [floatingFullName, setFloatingFullName] = useState("");
+  const [floatingEmail, setFloatingEmail] = useState("");
+  const [floatingFullNameError, setFloatingFullNameError] = useState("");
+  const [floatingEmailError, setFloatingEmailError] = useState("");
+
+  // Validation functions for floating form
+  const validateFloatingFullName = (name: string) => {
+    if (!name.trim()) {
+      return "Full name is required";
+    }
+    return "";
+  };
+
+  const validateFloatingEmail = (email: string) => {
+    if (!email.trim()) {
+      return "Email is required";
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return "Please enter a valid email address";
+    }
+    return "";
+  };
+
+  // Submit handler for floating form
+  const handleFloatingFormSubmit = () => {
+    const nameValidationError = validateFloatingFullName(floatingFullName);
+    const emailValidationError = validateFloatingEmail(floatingEmail);
+
+    setFloatingFullNameError(nameValidationError);
+    setFloatingEmailError(emailValidationError);
+
+    if (!nameValidationError && !emailValidationError) {
+      alert("Form submitted successfully!");
+    }
+  };
 
   // Error states
   const [emailError, setEmailError] = useState("");
@@ -140,7 +184,7 @@ const InputDemo = () => {
           />
 
           <Input
-            variant="fill"
+            variant="outline"
             type="password"
             label="Password"
             placeholder="Enter password..."
@@ -171,30 +215,203 @@ const InputDemo = () => {
       {/* Custom Styled Inputs */}
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-gray-200 mb-3">
-          Custom Styled Inputs
+          Custom Hover, Focus & State Examples
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Purple theme with custom hover/focus */}
           <Input
             variant="outline"
             type="text"
-            label="Custom Border"
-            placeholder="Custom styling"
-            className="border-purple-500 focus:border-purple-600 focus:ring-purple-600/20"
+            label="Purple Theme"
+            placeholder="Hover and focus me..."
+            className="border-purple-400 hover:border-purple-500 focus:border-purple-600 focus:ring-purple-500/30"
           />
 
+          {/* Green theme with custom states */}
+          <Input
+            variant="fill"
+            type="text"
+            label="Green Theme"
+            placeholder="Custom green styling..."
+            className="bg-green-50 border-green-200 hover:bg-green-100 focus:bg-white focus:border-green-500 focus:ring-green-400/20"
+          />
+
+          {/* Orange/amber theme */}
+          <Input
+            variant="outline"
+            type="email"
+            label="Amber Theme"
+            placeholder="Custom border colors..."
+            className="border-amber-300 hover:border-amber-400 focus:border-amber-500 focus:ring-amber-400/25"
+          />
+
+          {/* Rose theme with thick border + filled state */}
+          <Input
+            variant="outline"
+            type="text"
+            label="Rose Theme (Thick Border + Filled State)"
+            placeholder="Type something to see filled state..."
+            value={filledStateValue}
+            onChange={(e) => setFilledStateValue(e.target.value)}
+            className="rounded-xl border-2 border-gray-400 hover:border-rose-500 focus:border-rose-700 focus:ring-rose-400/30 [&.input-filled]:border-emerald-600 [&.input-filled:hover]:border-emerald-700 ring-offset-2"
+          />
+
+          {/* Dark theme example */}
+          <Input
+            variant="fill"
+            type="text"
+            label="Dark Theme"
+            placeholder="Dark mode styling..."
+            className="bg-gray-800 border-gray-600 text-gray-100 placeholder-gray-400 hover:bg-gray-700 focus:bg-gray-800 focus:border-blue-400 focus:ring-blue-400/20"
+          />
+
+          {/* Completely custom with gradient borders */}
           <Input
             unstyled
             type="text"
-            placeholder="Completely custom input"
-            className="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white placeholder-blue-100 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-white/50"
+            placeholder="Gradient focus ring..."
+            className="w-full px-4 py-3 border-2 border-purple-400 rounded-xl bg-white/5 text-gray-200 placeholder-gray-400 hover:border-purple-300 focus:outline-none focus:ring-4 focus:ring-purple-400/50 focus:border-purple-500 transition-all duration-300"
+          />
+        </div>
+
+        {/* Custom Floating Label Backgrounds */}
+        <h3 className="text-lg font-semibold text-gray-200 mb-3 mt-8">
+          Custom Floating Label Backgrounds
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Dark background */}
+          <Input
+            variant="floating"
+            type="text"
+            label="Dark Background (Test with Value)"
+            floatingLabelClassName="bg-[#242424]"
+            floatingLabelFocusColor="text-sky-600"
+            floatingLabelActiveColor="text-white"
+            //floatingLabelErrorColor="text-orange-600"
+            className="text-white"
+            value={floatingTestValue}
+            onChange={(e) => setFloatingTestValue(e.target.value)}
+          />
+
+          {/* Transparent background */}
+          <Input
+            variant="floating"
+            type="email"
+            label="Transparent"
+            floatingLabelClassName="bg-transparent"
+          />
+
+          {/* Custom color background */}
+          <Input
+            variant="floating"
+            type="text"
+            label="Blue Background"
+            floatingLabelClassName="bg-blue-50"
+          />
+
+          {/* Match page background */}
+          <Input
+            variant="floating"
+            type="tel"
+            placeholder="Matches Page BG"
+            floatingLabelClassName="bg-gray-950"
+          />
+        </div>
+
+        {/* Floating Form Validation Example */}
+        <h4 className="text-lg font-semibold mb-3 text-gray-300 mt-10">
+          Floating Label Form with Validation
+        </h4>
+        <div className="space-y-6 bg-gray-800 p-6 rounded-lg border border-gray-700">
+          <Input
+            variant="floating"
+            type="text"
+            label="Full Name"
+            value={floatingFullName}
+            onChange={(e) => {
+              setFloatingFullName(e.target.value);
+              // Clear error when user starts typing
+              if (floatingFullNameError) {
+                setFloatingFullNameError("");
+              }
+            }}
+            error={floatingFullNameError}
+            floatingLabelFocusColor="text-teal-300"
+            floatingLabelActiveColor="text-teal-500"
+            floatingLabelErrorColor="text-red-600"
+            floatingLabelClassName="bg-gray-800"
+            helperText="Please enter your full name"
+            className="rounded-full h-12 text-gray-300 border-2 border-gray-500 hover:border-teal-500 focus:border-teal-300 focus:ring-teal-300 [&.input-filled]:border-teal-600 [&.input-filled:hover]:border-teal-500 ring-offset-2 text-sm"
           />
 
           <Input
-            //unstyled
-            variant="outline"
-            type="password"
-            placeholder="Completely custom input"
-            className="w-full px-3 py-2 border border-lime-400 rounded-xl bg-white/5 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring focus:ring-lime-500 focus:border-lime-500 transition-all duration-200"
+            variant="floating"
+            type="email"
+            label="Email Address"
+            value={floatingEmail}
+            onChange={(e) => {
+              setFloatingEmail(e.target.value);
+              // Clear error when user starts typing
+              if (floatingEmailError) {
+                setFloatingEmailError("");
+              }
+            }}
+            error={floatingEmailError}
+            floatingLabelFocusColor="text-teal-300"
+            floatingLabelActiveColor="text-teal-500"
+            floatingLabelErrorColor="text-red-600"
+            floatingLabelClassName="bg-gray-800"
+            helperText="Please enter your email address"
+            className="rounded-full h-12 text-gray-300 border-2 border-gray-500 hover:border-teal-500 focus:border-teal-300 focus:ring-teal-300 [&.input-filled]:border-teal-600 [&.input-filled:hover]:border-teal-500 ring-offset-2 text-sm"
+          />
+
+          <div className="flex justify-center">
+            <Button
+              variant="fill"
+              onClick={handleFloatingFormSubmit}
+              className="w-full bg-teal-500 hover:bg-teal-600 active:bg-teal-800 rounded-full mt-7"
+            >
+              Submit Form
+            </Button>
+          </div>
+        </div>
+
+        {/* Text Size Examples */}
+        <h4 className="text-lg font-semibold mb-3 text-gray-300 mt-10">
+          Custom Text Sizes
+        </h4>
+        <div className="space-y-6 bg-gray-800/50 p-6 rounded-lg border border-gray-700">
+          <Input
+            variant="floating"
+            type="text"
+            label="Small Text (text-sm)"
+            placeholder="Small text size"
+            floatingLabelFocusColor="text-blue-400"
+            floatingLabelActiveColor="text-gray-300"
+            floatingLabelClassName="bg-gray-800"
+            className="text-sm"
+          />
+
+          <Input
+            variant="floating"
+            type="text"
+            label="Large Text (text-lg)"
+            placeholder="Large text size"
+            floatingLabelFocusColor="text-green-400"
+            floatingLabelActiveColor="text-gray-300"
+            floatingLabelClassName="bg-gray-800"
+            className="text-lg py-3"
+          />
+
+          <Input
+            variant="floating"
+            type="text"
+            label="Extra Large (text-xl)"
+            placeholder="Extra large text"
+            floatingLabelFocusColor="text-purple-400"
+            floatingLabelActiveColor="text-gray-300"
+            floatingLabelClassName="bg-gray-800"
+            className="text-xl py-4"
           />
         </div>
       </div>
