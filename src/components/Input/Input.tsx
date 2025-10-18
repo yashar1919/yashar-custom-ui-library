@@ -101,25 +101,29 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     // Handle clear input
     const handleClear = () => {
-      if (onChange) {
-        const event = {
-          target: { value: "" },
-          currentTarget: { value: "" },
-        } as React.ChangeEvent<HTMLInputElement>;
-        onChange(event);
-      }
-      if (!value) {
+      const event = {
+        target: { value: "" },
+        currentTarget: { value: "" },
+      } as React.ChangeEvent<HTMLInputElement>;
+
+      // Always update internal value for uncontrolled inputs
+      if (value === undefined) {
         setInternalValue("");
+      }
+
+      // Always call onChange if provided
+      if (onChange) {
+        onChange(event);
       }
     };
 
     // Check if clear button should be shown
     const shouldShowClear =
-      (type === "text" || type === "email" || type === "url") &&
       currentValue &&
       currentValue.length > 0 &&
       !disabled &&
-      !readOnly;
+      !readOnly &&
+      type !== "password"; // Don't show clear for password inputs since they have eye icon
 
     // Handle focus
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -259,7 +263,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
-        onClick={togglePasswordVisibility}
+        onMouseDown={(e) => {
+          e.preventDefault(); // Prevent input from losing focus
+          togglePasswordVisibility();
+        }}
       >
         {show ? (
           <path
@@ -286,7 +293,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
-        onClick={handleClear}
+        onMouseDown={(e) => {
+          e.preventDefault(); // Prevent input from losing focus
+          handleClear();
+        }}
       >
         <path
           strokeLinecap="round"
@@ -301,7 +311,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       baseClasses,
       defaultVariantClasses[variant],
       // Add filled state class when input has value
-      value && value.length > 0 && "input-filled",
+      currentValue && currentValue.length > 0 && "input-filled",
       // Adjust padding for icons
       type === "search" ? "pl-10" : "",
       type === "password" ? "pr-10" : "",
@@ -423,7 +433,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {/* Helper Text or Error */}
         {(helperText || error) && (
           <p
-            className={cn("text-xs ml-1", error ? "text-red-600" : "text-gray-500")}
+            className={cn(
+              "text-xs ml-1",
+              error ? "text-red-600" : "text-gray-500"
+            )}
           >
             {error || helperText}
           </p>

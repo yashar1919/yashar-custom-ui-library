@@ -375,45 +375,6 @@ const InputDemo = () => {
             </Button>
           </div>
         </div>
-
-        {/* Text Size Examples */}
-        <h4 className="text-lg font-semibold mb-3 text-gray-300 mt-10">
-          Custom Text Sizes
-        </h4>
-        <div className="space-y-6 bg-gray-800/50 p-6 rounded-lg border border-gray-700">
-          <Input
-            variant="floating"
-            type="text"
-            label="Small Text (text-sm)"
-            placeholder="Small text size"
-            floatingLabelFocusColor="text-blue-400"
-            floatingLabelActiveColor="text-gray-300"
-            floatingLabelClassName="bg-gray-800"
-            className="text-sm"
-          />
-
-          <Input
-            variant="floating"
-            type="text"
-            label="Large Text (text-lg)"
-            placeholder="Large text size"
-            floatingLabelFocusColor="text-green-400"
-            floatingLabelActiveColor="text-gray-300"
-            floatingLabelClassName="bg-gray-800"
-            className="text-lg py-3"
-          />
-
-          <Input
-            variant="floating"
-            type="text"
-            label="Extra Large (text-xl)"
-            placeholder="Extra large text"
-            floatingLabelFocusColor="text-purple-400"
-            floatingLabelActiveColor="text-gray-300"
-            floatingLabelClassName="bg-gray-800"
-            className="text-xl py-4"
-          />
-        </div>
       </div>
     </div>
   );
