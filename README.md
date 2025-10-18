@@ -1,54 +1,34 @@
-# Yashar UI Library# React + TypeScript + Vite
+# Yashar UI Library
 
-A modern React UI component library built with TypeScript, Tailwind CSS, and Vite.This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React UI component library built with TypeScript, Tailwind CSS, and Vite.
 
-## FeaturesCurrently, two official plugins are available:
+## Features
 
-- **Full Customization**: Override any default styling with className prop- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-
-- **Intelligent Class Merging**: Uses tailwind-merge for smart class resolution - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
+- **Full Customization**: Override any default styling with className prop
+- **Intelligent Class Merging**: Uses tailwind-merge for smart class resolution
 - **No Default Interactions**: You control hover, active, and focus states
-
-- **TypeScript Support**: Complete type safety out of the box## React Compiler
-
+- **TypeScript Support**: Complete type safety out of the box
 - **Tree Shakeable**: Import only what you need
+- **Tailwind CSS Ready**: Seamless integration with Tailwind projects
 
-- **Tailwind CSS Ready**: Seamless integration with Tailwind projectsThe React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Installation
 
-## Installation## Expanding the ESLint configuration
-
-```````bashIf you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
+```bash
 npm install yashar-ui
+```
 
-``````js
+## Quick Start
 
-export default defineConfig([
+````tsx
+import { Button } from "yashar-ui";
+import "yashar-ui/dist/yashar-ui.css";
 
-## Quick Start  globalIgnores(['dist']),
-
-  {
-
-```tsx    files: ['**/*.{ts,tsx}'],
-
-import { Button } from "yashar-ui";    extends: [
-
-import "yashar-ui/dist/yashar-ui.css";      // Other configs...
-
-
-
-function App() {      // Remove tseslint.configs.recommended and replace with this
-
-  return (      tseslint.configs.recommendedTypeChecked,
-
-    <Button       // Alternatively, use this for stricter rules
-
-      variant="primary"       tseslint.configs.strictTypeChecked,
-
-      className="hover:bg-blue-700 active:bg-blue-800"      // Optionally, add this for stylistic rules
-
-    >      tseslint.configs.stylisticTypeChecked,
+function App() {
+  return (
+    <Button
+      variant="primary"
+      className="hover:bg-blue-700 active:bg-blue-800"
+    >
 
       Click me
 
@@ -149,7 +129,51 @@ import { cn } from "yashar-ui";
 const MyComponent = ({ className }) => (
   <div className={cn("default-classes", className)} />
 );
-```````
+````
+
+## Components
+
+### Modal
+
+Advanced modal component with rich customization options:
+
+```tsx
+import { Modal } from "yashar-ui";
+
+<Modal
+  open={isOpen}
+  onClose={() => setIsOpen(false)}
+  title="Custom Modal"
+  size="lg"
+  animation="scale"
+  // Typography customization
+  titleFontSize="2rem" // Any CSS font-size value
+  titleColor="#059669" // Any CSS color value
+  contentFontSize="1.1rem" // Content text size
+  contentColor="#374151" // Content text color
+  // Advanced options
+  showHeader={true} // Show/hide entire header
+  showCloseButton={true} // Show/hide close button
+  closeOnOverlayClick={true} // Click outside to close
+  closeOnEscape={true} // Press Escape to close
+  overlayClassName="bg-black/60" // Custom overlay styling
+  contentClassName="rounded-xl" // Custom content styling
+  footer={<div>Custom footer</div>}
+>
+  Your modal content here
+</Modal>;
+```
+
+**Typography Props:**
+
+- `titleFontSize` - CSS font-size for title (e.g., "24px", "1.5rem", "large")
+- `titleColor` - CSS color for title (e.g., "#ff0000", "rgb(255,0,0)", "red")
+- `contentFontSize` - CSS font-size for content text
+- `contentColor` - CSS color for content text
+
+**Animation Types:** `fade | scale | slide-up | slide-down | slide-left | slide-right | bounce | flip`
+
+**Size Variants:** `sm | md | lg | xl | 2xl | full`
 
 ## Documentation
 

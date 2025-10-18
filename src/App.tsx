@@ -1,7 +1,7 @@
 ﻿import { useState } from "react";
 import { Navigation, type NavigationItem } from "./components/Navigation";
 import { Overview } from "./components/Overview";
-import { ButtonDemo, InputDemo, TextareaDemo } from "./demos";
+import { ButtonDemo, InputDemo, TextareaDemo, ModalDemo } from "./demos";
 
 function App() {
   const [activeComponent, setActiveComponent] = useState<string>("overview");
@@ -68,6 +68,26 @@ function App() {
       ),
       description: "Multi-line text areas with floating label support",
     },
+    {
+      id: "modal",
+      label: "Modal",
+      icon: (
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+          />
+        </svg>
+      ),
+      description: "Interactive modal dialogs with animations",
+    },
   ];
 
   // Render the active component
@@ -81,6 +101,8 @@ function App() {
         return <InputDemo />;
       case "textarea":
         return <TextareaDemo />;
+      case "modal":
+        return <ModalDemo />;
       default:
         return <Overview />;
     }
